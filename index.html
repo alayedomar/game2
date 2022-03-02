@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="add-qes">
+        <span>X</span>
+        <select id="level">
+            <datalist>
+                <option value="E-">سهل</option>
+                <option value="M-">متوسط</option>
+                <option value="H-">صعب</option>
+            </datalist>
+        </select>
+        <textarea placeholder="السؤال" type="text"></textarea>
+        <textarea placeholder="الجواب" type="text"></textarea>
+        <textarea placeholder="الوقت" type="text"></textarea>
+        <textarea placeholder="img" type="text"></textarea>
+        <button class="push">PUSH</button>
+    </div>
+    <svg class="active" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M128 32H32C14.31 32 0 46.31 0 64v96c0 17.69 14.31 32 32 32s32-14.31 32-32V96h64c17.69 0 32-14.31 32-32S145.7 32 128 32zM416 32h-96c-17.69 0-32 14.31-32 32s14.31 32 32 32h64v64c0 17.69 14.31 32 32 32s32-14.31 32-32V64C448 46.31 433.7 32 416 32zM128 416H64v-64c0-17.69-14.31-32-32-32s-32 14.31-32 32v96c0 17.69 14.31 32 32 32h96c17.69 0 32-14.31 32-32S145.7 416 128 416zM416 320c-17.69 0-32 14.31-32 32v64h-64c-17.69 0-32 14.31-32 32s14.31 32 32 32h96c17.69 0 32-14.31 32-32v-96C448 334.3 433.7 320 416 320z"/></svg>
+    <answer class="wrong"><span style='--i: translate(-100%);'> خاطئة</span><span style='--i: translate(100%);'>إجابة </span></answer>
+    <answer class="correct"><span style='--i: translate(-100%);'> صحيحة</span><span style='--i: translate(100%);'>إجابة </span></answer>
+    <timer></timer>
+    <div class="start">
+        <span class="add">إضافة أسئلة</span>
+        <input type="text" placeholder="عدد الفرق">
+        <input type="text" placeholder="سهل">
+        <input type="text" placeholder="متوسط">
+        <input type="text" placeholder="صعب">
+        <button>Start</button>
+    </div>
+    <header></header>
+    <div class="container">
+    </div>
+    <footer>
+        <span id="showAns">إظهار الإجابة</span>
+        <span id="next">التالي</span>
+    </footer>
+    <!-- <div class="winners"><close></close></div> -->
+    <script src="main.js"></script>
+</body>
+</html>

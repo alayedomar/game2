@@ -1,0 +1,499 @@
+@import url("https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "El Messiri", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #fff;
+  transition: background 0.4s;
+}
+body.error {
+  animation: ba 0.4s linear;
+}
+body > .start {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  position: absolute;
+  background: #fff;
+}
+body > .start > input , .add-qes > textarea , select{
+  width: 300px;
+  height: 100px;
+  font-size: 70px;
+  text-align: center;
+  border-radius: 10px;
+  border: 3px solid rgb(0, 132, 219);
+  outline: none;
+  caret-color: rgb(0, 195, 255);
+  color: rgb(0, 195, 255);
+  transition: box-shadow 0.3s;
+  box-shadow: 0 0 0px 0px rgba(0, 110, 255, 0.63);
+}
+.add-qes > textarea {
+  line-height: 55px;
+  font-size: 50px;
+  min-width: 300px;
+  max-width: 650px;
+  min-height: 100px;
+  max-height: 200px;
+}
+body > .start > input::placeholder , .add-qes > input::placeholder{
+  color: rgba(0, 0, 0, 0.082);
+}
+body > .start > input:focus , .add-qes > input:focus{
+  box-shadow: 0 0 2px 4px rgba(0, 110, 255, 0.63), 0 0 10px #fff;
+}
+body > .start > button {
+  box-shadow: 0 0 10px #00000047;
+  width: 300px;
+  height: 52px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  color: #00b2ff;
+  font-size: 30px;
+}
+body > .container {
+  margin-top: 100px;
+  width: 90vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  perspective: 500px;
+}
+body > .container > span {
+  width: 200px;
+  height: 110px;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+body > .container > span.active {
+  transform: rotateX(180deg);
+}
+body > .container > span > span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  font-size: 20px;
+  font-weight: 700;
+}
+body > .container > span > span:nth-of-type(2) {
+  backface-visibility: hidden;
+}
+body > .container > span > span:nth-of-type(1) {
+  /* transform: scale(1, -1); */
+  font-size: 11px;
+  text-align: center;
+  padding: 10px;
+  color: #000;
+  overflow: scroll;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-image: url("");
+  background-size: 50% !important;
+  background-position: center bottom !important;
+}
+body > .container > span > span:nth-of-type(1)::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 75%;
+  background: rgba(0, 0, 0, 0.116);
+  z-index: -1;
+  align-self: center;
+}
+header {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  height: 100px;
+  /* background: white; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+header > span,
+.winners > span {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border: 4px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.75;
+  transform: scale(0.9);
+  transition: box-shadow 0.3s, transform 0.3s;
+  counter-increment: num;
+}
+header > span::after {
+  content: counter(num);
+  color: #fff;
+  font-size: 30px;
+  filter: drop-shadow(0 0 5px #000);
+}
+header > span.active {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgb(0, 217, 255);
+}
+header > span.lose {
+  opacity: 0.3;
+}
+header > span.lose::after {
+  content: "L";
+  font-size: 25px;
+  color: #f00;
+}
+header > span.lose::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  background: red;
+  transform: rotate(45deg);
+}
+header > span.won {
+  border: 6px double #ff0;
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.651);
+}
+
+header > span.won::after {
+  content: "w";
+  color: #ff0;
+  filter: drop-shadow(0 0 4px #000);
+}
+.end:not(:empty) {
+  width: 400px;
+  height: 100px;
+  position: absolute;
+  bottom: 20px;
+  background: #ff000060;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #f00;
+  border: 1px solid rgb(255, 0, 0);
+  color: rgb(255, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  cursor: pointer;
+}
+.winners {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #fff;
+  gap: 25px;
+  top: 0;
+  transform: translateY(-100%);
+  transition: transform 1s;
+}
+.winners.active {
+  display: flex;
+  transform: translateY(0);
+}
+.winners close {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #f00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.winners close::after {
+  content: "x";
+  font-size: 30px;
+  color: #f00;
+}
+.winners > span::after {
+  content: counter(num);
+  font-size: 50px;
+  align-self: center;
+  transform: translateX(-100px);
+}
+.winners > span:nth-of-type(1) {
+  border: 6px solid #ff0;
+  transform: scale(1.2);
+}
+.winners > span:nth-of-type(1)::after {
+  color: #ff0;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.582));
+  transform: scale(1.2) translateX(-70px);
+}
+.winners > span:nth-of-type(2) {
+  border: 6px solid rgb(214, 214, 214);
+  transform: scale(1.2);
+}
+.winners > span:nth-of-type(2)::after {
+  color: rgb(214, 214, 214);
+  transform: scale(1.2) translateX(-70px);
+}
+.winners > span:nth-of-type(3) {
+  border: 6px solid brown;
+  transform: scale(1.2);
+}
+.winners > span:nth-of-type(3)::after {
+  color: brown;
+  transform: scale(1.2) translateX(-70px);
+}
+/* --------------------------------------------- */
+body > .container > span {
+  transition: transform 0.5s, box-shadow 0.4s;
+}
+.ACTIVE {
+  position: absolute !important;
+  border-radius: 10px;
+  z-index: 10;
+  animation: f 0.6s linear forwards;
+  z-index: 4;
+  margin-bottom: 80px;
+}
+@keyframes f {
+  99% {
+    transform: scale(5) rotateX(180deg);
+  }
+  100% {
+    transform: scale(5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5),
+      0 0 1200px 1200px rgb(255, 255, 255);
+  }
+}
+.ACTIVE > span:nth-of-type(1) {
+  transition: z-index 1s 5s;
+}
+.ACTIVE > span:nth-of-type(1) {
+  z-index: 4;
+}
+timer {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  /* background: rgb(255, 255, 255); */
+  top: 5px;
+  z-index: 2;
+  transform: translateY(-100%);
+  transition: transform 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 95px;
+  color: #000;
+  user-select: none;
+}
+timer.active {
+  transform: translateY(0);
+}
+footer {
+  z-index: 4;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transform: translateY(100%);
+  transition: transform 0.2s 10s;
+  padding-bottom: 50px;
+  display: none;
+  bottom: 0;
+  position: absolute;
+}
+footer > span {
+  color: rgb(255, 17, 0);
+  width: 400px;
+  height: 90px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ff393991;
+  border: 2px solid;
+  cursor: pointer;
+  transition: 0.4s;
+  box-shadow: 0 0 30px;
+  user-select: none;
+}
+footer > span:nth-of-type(1) {
+  color: #1eb400;
+  background: #5aff3991;
+}
+footer > span:nth-of-type(1):hover {
+  background: rgb(36, 218, 0);
+  border: #1eb400;
+  color: #fff;
+  box-shadow: 0 0 30px #1eb400;
+}
+footer > span:nth-of-type(2):hover {
+  background: rgb(255, 17, 0);
+  border: rgb(255, 17, 0);
+  color: #fff;
+  box-shadow: 0 0 30px rgb(255, 17, 0);
+}
+
+footer.active {
+  display: flex;
+  transform: translateY(0);
+}
+@keyframes ba {
+  50% {
+    background: red;
+  }
+}
+answer {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  z-index: -1;
+}
+answer.active {
+  z-index: 100;
+}
+answer.active  > span {
+  animation: ee 1.5s linear;
+}
+answer  > span {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background: red;
+  font-size: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+answer.correct  > span {
+  background: rgb(0, 209, 52);
+}
+answer  > span:nth-of-type(2){
+  justify-content: start;
+  transform: translateX(100%);
+}
+answer  > span:nth-of-type(1){
+  justify-content: end;
+  transform: translateX(-100%);
+}
+@keyframes ee {
+  40%{
+    transform: translateX(0);
+  }
+
+  70%{
+    transform: translateX(0);
+
+  }
+  100% {
+    transform: var(--i);
+  }
+}
+svg {
+  display: none;
+}
+svg.active{
+  display: block;
+  z-index: 10;
+  position: absolute;
+  width: 25px;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  fill: #00dfe4;
+}
+.add {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+  font-size: 20px;
+  color: #00ace6;
+  padding: 2px 26px;
+  border-radius: 100px;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 10px #4e4e4e73;
+}
+.add-qes {
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  gap: 20px;
+  transition: transform .8s;
+  transform: translateY(-100%);
+}
+.add-qes.active  {
+  transform: translateY(0);
+}
+.add-qes > span {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: red;
+  border: 2px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+.add-qes > button {
+  width: 300px;
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid rgb(0, 219, 73);
+  color:rgb(0, 219, 66);
+  box-shadow: 0 0 0px rgb(0, 219, 73);
+  background: rgba(0, 255, 76, 0.247);
+  cursor: pointer;
+  transition: box-shadow .2s;
+} 
+.add-qes > button:hover {
+  box-shadow: 0 0 10px rgb(0, 219, 73);
+ }
